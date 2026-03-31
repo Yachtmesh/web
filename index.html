@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yachtmesh — The Open Platform for NMEA2000</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-bg: #FAFAFA;
+      --color-text: #0F172A;
+      --color-muted: #6B7280;
+      --color-accent: #06B6D4;
+      --color-accent-dark: #0E7490;
+      --color-border: #E5E5E5;
+      --color-surface: #FFFFFF;
+      --font: 'Inter', system-ui, sans-serif;
+      --max-width: 760px;
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--color-muted);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-links a.accent {
+      color: var(--color-accent);
+    }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger svg {
+      display: block;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--color-muted);
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-accent);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: var(--font);
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--color-accent);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: var(--font);
+      border: 1.5px solid var(--color-accent);
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-secondary:hover {
+      opacity: 0.75;
+      text-decoration: none;
+    }
+
+    /* ─── BANNER ─── */
+    .banner {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      width: 100%;
+      font-size: 14px;
+      color: #92400E;
+      line-height: 1.5;
+    }
+
+    .banner-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F59E0B;
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-size: 16px;
+      color: var(--color-muted);
+      line-height: 1.7;
+      max-width: 100%;
+    }
+
+    /* ─── FEATURES GRID ─── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .feature-card {
+      padding: 24px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      background: var(--color-surface);
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--color-muted);
+      line-height: 1.55;
+    }
+
+    /* ─── WHO IT'S FOR ─── */
+    .audience-list {
+      list-style: none;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .audience-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .audience-tag {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      color: var(--color-text);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .audience-list p {
+      font-size: 16px;
+      color: var(--color-muted);
+    }
+
+    /* ─── WAITLIST ─── */
+    .waitlist-section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .waitlist-section h2 {
+      margin-bottom: 12px;
+    }
+
+    .waitlist-section .section-body {
+      margin-bottom: 36px;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 480px;
+    }
+
+    .email-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 13px 16px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 6px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.15s;
+      font-family: var(--font);
+    }
+
+    .email-input:focus {
+      border-color: var(--color-accent);
+    }
+
+    .form-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+
+    .success-msg {
+      display: none;
+      margin-top: 16px;
+      font-size: 15px;
+      color: #1a9952;
+      font-weight: 500;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+    }
+
+    .contact-form textarea,
+    .contact-form input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: var(--font);
+      margin-bottom: 12px;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.15s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--color-accent);
+    }
+
+    .contact-info h3 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p {
+      font-size: 15px;
+      color: var(--color-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-links a {
+      font-size: 15px;
+      color: var(--color-accent);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 0;
+      background: #0F172A;
+      color: #94A3B8;
+    }
+
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-social a {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-social a:hover {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      section {
+        padding: 48px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: block;
+      }
+
+      .nav-logo-text {
+        font-size: 18px;
+      }
+
+      .hero {
+        padding: 48px 0 40px;
+      }
+
+      .hero .container {
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        text-align: left;
+        font-size: 32px;
+      }
+
+      .hero-sub {
+        text-align: left;
+        font-size: 16px;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        margin-bottom: 20px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+      }
+
+      .hero-cta .btn-primary,
+      .hero-cta .btn-secondary {
+        width: 100%;
+      }
+
+      .banner {
+        margin-top: 20px;
+        font-size: 13px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .section-label {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+      }
+
+      .section-body {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .audience-list li {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .audience-tag {
+        align-self: flex-start;
+        font-size: 11px;
+      }
+
+      .audience-list p {
+        font-size: 15px;
+      }
+
+      .email-form {
+        flex-direction: column;
+        max-width: 100%;
+      }
+
+      .email-input {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .contact-info h3 {
+        font-size: 18px;
+      }
+
+      .contact-info p {
+        font-size: 14px;
+      }
+
+      .social-links a {
+        font-size: 14px;
+      }
+
+      footer .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-social {
+        gap: 16px;
+      }
+
+      .footer-social a {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav>
+    <div class="container">
+      <span class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="2" r="2" fill="#0E7490" />
+          <circle cx="26" cy="14" r="2" fill="#0E7490" />
+          <circle cx="14" cy="26" r="2" fill="#0E7490" />
+          <circle cx="2" cy="14" r="2" fill="#0E7490" />
+          <circle cx="14" cy="14" r="4" fill="#06B6D4" />
+        </svg>
+        <span class="nav-logo-text">YACHTMESH</span>
+      </span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#waitlist" class="accent">Get Early Access</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="about">
+    <div class="container">
+      <p class="hero-eyebrow">Now in Development</p>
+      <h1>Your boat's data.<br>Open, connected, finally yours.</h1>
+      <p class="hero-sub">
+        Yachtmesh is a modern NMEA2000 platform that makes it simple to connect, read, and act on every sensor aboard
+        your yacht — without the proprietary lock-in, the sky-high price tag, or the frustration.
+      </p>
+      <div class="hero-cta">
+        <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+        <a href="#features" class="btn-secondary">See What's Coming</a>
+      </div>
+
+      <div class="banner">
+        <div class="banner-dot"></div>
+        <span>Prototype hardware is live. We're building toward an early access release — be the first to know when it's
+          ready.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ PROBLEM ═══════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">The Problem</p>
+      <h2>Marine electronics are stuck in the past.</h2>
+      <p class="section-body">
+        NMEA2000 is a powerful protocol — it connects depth sounders, wind instruments, GPS units, engine sensors, and
+        more into a single shared network. It's the backbone of nearly every modern yacht's electronics system.
+      </p>
+      <p class="section-body" style="margin-top: 16px;">
+        But accessing that data? That's where things fall apart. The hardware is overpriced. The software is locked
+        down. Every manufacturer guards their ecosystem, leaving boat owners dependent on expensive, proprietary tools
+        just to see what their own sensors are reporting.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ FEATURES ═══════════ -->
+  <section id="features">
+    <div class="container">
+      <p class="section-label">What Yachtmesh Does</p>
+      <h2>Everything your NMEA2000 network deserves.</h2>
+
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🔌</div>
+          <h3>Plug-and-Play Hardware</h3>
+          <p>Connect to your NMEA2000 network in minutes. No proprietary gateways, no complex setup — just plug in
+            and start reading data.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Works Across All Brands</h3>
+          <p>Garmin, Raymarine, Simrad, B&G — it doesn't matter. Yachtmesh reads standard NMEA2000 data from any
+            manufacturer's sensors.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔓</div>
+          <h3>Fully Open Source</h3>
+          <p>Hardware schematics, firmware, and software — all open. Inspect it, modify it, contribute to it. Your
+            boat, your data, your code.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">👨‍💻</div>
+          <h3>Developer Friendly</h3>
+          <p>REST APIs, WebSocket streams, MQTT support. Integrate your boat data with Home Assistant, Signal K,
+            custom dashboards, or anything you build.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Modern Software Interface</h3>
+          <p>A clean, responsive web dashboard that runs on any device. Monitor your boat from a tablet at the helm
+            or a phone on shore.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⛵</div>
+          <h3>Built for Real Sailors</h3>
+          <p>Designed by someone who actually lives aboard. Every feature is informed by real-world use — not a spec
+            sheet written in an office.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ WHO IT'S FOR ═══════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Who It's For</p>
+      <h2>Built for everyone on the water — and behind the scenes.</h2>
+
+      <ul class="audience-list">
+        <li>
+          <span class="audience-tag">DIY Sailors</span>
+          <p>Take full control of your boat's electronics without a boatyard bill. Yachtmesh gives you the tools to
+            install, configure, and customise your own NMEA2000 setup from scratch.</p>
+        </li>
+        <li>
+          <span class="audience-tag">Marine Installers</span>
+          <p>A platform you can trust, document, and stand behind. Yachtmesh is designed to make installs faster and
+            hand-offs smoother — so your clients stay happy long after the job is done.</p>
+        </li>
+        <li>
+          <span class="audience-tag">Race Teams</span>
+          <p>Every tenth counts. Yachtmesh gives you clean, reliable, real-time data from every sensor aboard — and the
+            flexibility to pipe it wherever your performance workflow demands.</p>
+        </li>
+        <li>
+          <span class="audience-tag">Boat Builders & OEMs</span>
+          <p>Integrate a modern, open electronics platform at the build stage. No licensing fees, no vendor dependency,
+            and a growing ecosystem your customers will appreciate for years.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════ WAITLIST ═══════════ -->
+  <section class="waitlist-section" id="waitlist">
+    <div class="container">
+      <p class="section-label">Early Access</p>
+      <h2>Be the first to get your hands on Yachtmesh.</h2>
+      <p class="section-body">
+        We're heads-down building toward our first release. Join the waitlist and we'll reach out as soon as early
+        access opens — no spam, just a single email when it matters.
+      </p>
+
+      <div class="email-form">
+        <input type="email" class="email-input" placeholder="your@email.com" id="waitlist-email" required />
+        <button class="btn-primary" onclick="handleWaitlist()">Notify Me</button>
+      </div>
+      <p class="form-note">We respect your inbox. One email when we're ready — that's it.</p>
+      <p class="success-msg" id="waitlist-success">✓ You're on the list. We'll be in touch when early access opens.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ CONTACT ═══════════ -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Get in Touch</p>
+      <h2>Questions? Ideas? Let's talk.</h2>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>We'd love to hear from you.</h3>
+          <p>
+            Whether you're curious about the platform, want to contribute to the project, or have a specific use case in
+            mind — drop us a message and we'll get back to you.
+          </p>
+          <p>You can also find us on:</p>
+          <div class="social-links">
+            <a href="https://github.com/yachtmesh" target="_blank">GitHub → github.com/yachtmesh</a>
+            <a href="https://instagram.com/yachtmesh" target="_blank">Instagram → @yachtmesh</a>
+            <a href="https://twitter.com/yachtmesh" target="_blank">Twitter / X → @yachtmesh</a>
+            <a href="https://linkedin.com/company/yachtmesh" target="_blank">LinkedIn → Yachtmesh</a>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <input type="text" placeholder="Your name" id="contact-name" />
+          <input type="email" placeholder="Your email" id="contact-email" />
+          <textarea rows="5" placeholder="Your message" id="contact-message"></textarea>
+          <button class="btn-primary" onclick="handleContact()">Send Message</button>
+          <p class="success-msg" id="contact-success" style="display:none;">✓ Message sent. We'll be back in touch
+            shortly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container">
+      <span class="footer-logo">
+        <svg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="2" r="2" fill="#FFFFFF" />
+          <circle cx="26" cy="14" r="2" fill="#FFFFFF" />
+          <circle cx="14" cy="26" r="2" fill="#FFFFFF" />
+          <circle cx="2" cy="14" r="2" fill="#FFFFFF" />
+          <circle cx="14" cy="14" r="4" fill="#FFFFFF" />
+        </svg>
+        YACHTMESH
+      </span>
+      <p>© 2026 Yachtmesh. Open source. Built for sailors.</p>
+      <div class="footer-social">
+        <a href="https://github.com/yachtmesh" target="_blank">GitHub</a>
+        <a href="https://instagram.com/yachtmesh" target="_blank">Instagram</a>
+        <a href="https://twitter.com/yachtmesh" target="_blank">Twitter</a>
+        <a href="https://linkedin.com/company/yachtmesh" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleWaitlist() {
+      const email = document.getElementById('waitlist-email').value;
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      document.getElementById('waitlist-email').value = '';
+      document.getElementById('waitlist-success').style.display = 'block';
+    }
+
+    function handleContact() {
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const message = document.getElementById('contact-message').value;
+      if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-email').value = '';
+      document.getElementById('contact-message').value = '';
+      document.getElementById('contact-success').style.display = 'block';
+    }
+  </script>
+
+</body>
+
+</html>
