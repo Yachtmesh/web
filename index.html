@@ -349,6 +349,15 @@
       border-color: var(--color-accent);
     }
 
+    .email-form .cf-turnstile {
+      flex-basis: 100%;
+      margin: 4px 0;
+    }
+
+    .contact-form .cf-turnstile {
+      margin: 4px 0;
+    }
+
     .form-note {
       margin-top: 12px;
       font-size: 13px;
@@ -761,8 +770,8 @@
 
       <div class="email-form">
         <input type="email" class="email-input" placeholder="your@email.com" id="waitlist-email" required />
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAC5b2YX-n2lPGC8v" id="waitlist-turnstile"></div>
         <button class="btn-primary" onclick="handleWaitlist()">Notify Me</button>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAC5b2YX-n2lPGC8v" data-theme="light" id="waitlist-turnstile"></div>
       </div>
       <p class="form-note">We respect your inbox. One email when we're ready — that's it.</p>
       <p class="success-msg" id="waitlist-success">✓ You're on the list. We'll be in touch when early access opens.</p>
@@ -795,7 +804,7 @@
           <input type="text" placeholder="Your name" id="contact-name" />
           <input type="email" placeholder="Your email" id="contact-email" />
           <textarea rows="5" placeholder="Your message" id="contact-message"></textarea>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAC5b2YX-n2lPGC8v" id="contact-turnstile"></div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAC5b2YX-n2lPGC8v" data-theme="light" id="contact-turnstile"></div>
           <button class="btn-primary" onclick="handleContact()">Send Message</button>
           <p class="success-msg" id="contact-success" style="display:none;">✓ Message sent. We'll be back in touch
             shortly.</p>
