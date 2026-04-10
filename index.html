@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     *,
     *::before,
@@ -760,6 +761,7 @@
 
       <div class="email-form">
         <input type="email" class="email-input" placeholder="your@email.com" id="waitlist-email" required />
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAC5b2YX-n2lPGC8v" id="waitlist-turnstile"></div>
         <button class="btn-primary" onclick="handleWaitlist()">Notify Me</button>
       </div>
       <p class="form-note">We respect your inbox. One email when we're ready — that's it.</p>
@@ -793,6 +795,7 @@
           <input type="text" placeholder="Your name" id="contact-name" />
           <input type="email" placeholder="Your email" id="contact-email" />
           <textarea rows="5" placeholder="Your message" id="contact-message"></textarea>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAC5b2YX-n2lPGC8v" id="contact-turnstile"></div>
           <button class="btn-primary" onclick="handleContact()">Send Message</button>
           <p class="success-msg" id="contact-success" style="display:none;">✓ Message sent. We'll be back in touch
             shortly.</p>
@@ -825,28 +828,68 @@
   </footer>
 
   <script>
-    function handleWaitlist() {
-      const email = document.getElementById('waitlist-email').value;
+    const PROXY = 'https://yachtmesh-proxy.yachtmesh.workers.dev';
+
+    async function proxyFetch(path, body) {
+      const res = await fetch(PROXY + path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) throw new Error('Request failed: ' + res.status);
+      return res.json();
+    }
+
+    async function handleWaitlist() {
+      const emailEl = document.getElementById('waitlist-email');
+      const email = emailEl.value.trim();
       if (!email || !email.includes('@')) {
         alert('Please enter a valid email address.');
         return;
       }
-      document.getElementById('waitlist-email').value = '';
-      document.getElementById('waitlist-success').style.display = 'block';
+      const turnstileToken = turnstile.getResponse(document.getElementById('waitlist-turnstile'));
+      if (!turnstileToken) {
+        alert('Please complete the CAPTCHA.');
+        return;
+      }
+      try {
+        await proxyFetch('/waitlist', { email, turnstileToken });
+        emailEl.value = '';
+        turnstile.reset(document.getElementById('waitlist-turnstile'));
+        document.getElementById('waitlist-success').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        alert('Something went wrong. Please try again.');
+      }
     }
 
-    function handleContact() {
-      const name = document.getElementById('contact-name').value;
-      const email = document.getElementById('contact-email').value;
-      const message = document.getElementById('contact-message').value;
+    async function handleContact() {
+      const nameEl = document.getElementById('contact-name');
+      const emailEl = document.getElementById('contact-email');
+      const messageEl = document.getElementById('contact-message');
+      const name = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const message = messageEl.value.trim();
       if (!name || !email || !message) {
         alert('Please fill in all fields.');
         return;
       }
-      document.getElementById('contact-name').value = '';
-      document.getElementById('contact-email').value = '';
-      document.getElementById('contact-message').value = '';
-      document.getElementById('contact-success').style.display = 'block';
+      const turnstileToken = turnstile.getResponse(document.getElementById('contact-turnstile'));
+      if (!turnstileToken) {
+        alert('Please complete the CAPTCHA.');
+        return;
+      }
+      try {
+        await proxyFetch('/contact', { name, email, message, turnstileToken });
+        nameEl.value = '';
+        emailEl.value = '';
+        messageEl.value = '';
+        turnstile.reset(document.getElementById('contact-turnstile'));
+        document.getElementById('contact-success').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        alert('Something went wrong. Please try again.');
+      }
     }
   </script>
 
