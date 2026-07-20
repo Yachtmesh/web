@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Yachtmesh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-bg: #FAFAFA;
+      --color-text: #0F172A;
+      --color-muted: #6B7280;
+      --color-accent: #06B6D4;
+      --color-accent-dark: #0E7490;
+      --color-border: #E5E5E5;
+      --color-surface: #FFFFFF;
+      --font: 'Inter', system-ui, sans-serif;
+      --max-width: 760px;
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--color-muted);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-links a.accent {
+      color: var(--color-accent);
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      color: var(--color-muted);
+      max-width: 560px;
+    }
+
+    /* ─── SUPPORT CARDS ─── */
+    .support-section {
+      padding: 48px 0 64px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .support-card {
+      padding: 28px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      background: var(--color-surface);
+    }
+
+    .support-card-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .support-card h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .support-card p {
+      font-size: 15px;
+      color: var(--color-muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .support-card .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--color-accent);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1.5px solid var(--color-accent);
+      transition: opacity 0.15s;
+    }
+
+    .support-card .btn-secondary:hover {
+      opacity: 0.75;
+      text-decoration: none;
+    }
+
+    .support-note {
+      margin-top: 32px;
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 0;
+      background: #0F172A;
+      color: #94A3B8;
+    }
+
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-logo-text {
+        font-size: 18px;
+      }
+
+      .page-header {
+        padding: 40px 0 32px;
+      }
+
+      .support-section {
+        padding: 32px 0 48px;
+      }
+
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav>
+    <div class="container">
+      <a class="nav-logo" href="/">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="2" r="2" fill="#0E7490" />
+          <circle cx="26" cy="14" r="2" fill="#0E7490" />
+          <circle cx="14" cy="26" r="2" fill="#0E7490" />
+          <circle cx="2" cy="14" r="2" fill="#0E7490" />
+          <circle cx="14" cy="14" r="4" fill="#06B6D4" />
+        </svg>
+        <span class="nav-logo-text">YACHTMESH</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#waitlist" class="accent">Get Early Access</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════ PAGE HEADER ═══════════ -->
+  <header class="page-header">
+    <div class="container">
+      <p class="section-label">Support</p>
+      <h1>Need a hand?</h1>
+      <p>Yachtmesh is open source, so most support happens out in the open on GitHub — bug reports, feature
+        requests, and questions from the community all live there.</p>
+    </div>
+  </header>
+
+  <!-- ═══════════ SUPPORT OPTIONS ═══════════ -->
+  <section class="support-section">
+    <div class="container">
+      <div class="support-grid">
+
+        <div class="support-card">
+          <div class="support-card-icon">🐛</div>
+          <h2>Found a bug?</h2>
+          <p>Open an issue on the relevant Yachtmesh repository with as much detail as you can — steps to
+            reproduce, hardware involved, and any logs help us track it down faster.</p>
+          <a class="btn-secondary" href="https://github.com/yachtmesh" target="_blank">Open an issue →</a>
+        </div>
+
+        <div class="support-card">
+          <div class="support-card-icon">💡</div>
+          <h2>Have an idea?</h2>
+          <p>Feature requests and discussions are welcome. Browse existing issues first to see if it's already
+            being tracked, then add your voice or open a new one.</p>
+          <a class="btn-secondary" href="https://github.com/yachtmesh" target="_blank">Browse GitHub →</a>
+        </div>
+
+        <div class="support-card">
+          <div class="support-card-icon">✉️</div>
+          <h2>Something else?</h2>
+          <p>For account, order, or press-related questions — anything that isn't a GitHub issue — email us
+            directly and we'll get back to you.</p>
+          <a class="btn-secondary" href="mailto:support@yachtmesh.io">support@yachtmesh.io</a>
+        </div>
+
+        <div class="support-card">
+          <div class="support-card-icon">🧭</div>
+          <h2>Not sure where to start?</h2>
+          <p>Check the waitlist and contact form on the homepage, or reach out on social — we're active and happy
+            to point you in the right direction.</p>
+          <a class="btn-secondary" href="/#contact">Go to contact form →</a>
+        </div>
+
+      </div>
+
+      <p class="support-note">We're a small, heads-down team building toward early access, so response times can
+        vary — but we read everything.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container">
+      <span class="footer-logo">
+        <svg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="2" r="2" fill="#FFFFFF" />
+          <circle cx="26" cy="14" r="2" fill="#FFFFFF" />
+          <circle cx="14" cy="26" r="2" fill="#FFFFFF" />
+          <circle cx="2" cy="14" r="2" fill="#FFFFFF" />
+          <circle cx="14" cy="14" r="4" fill="#FFFFFF" />
+        </svg>
+        YACHTMESH
+      </span>
+      <p>© 2026 Yachtmesh. Open source. Built for sailors.</p>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/support">Support</a>
+        <a href="https://github.com/yachtmesh" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

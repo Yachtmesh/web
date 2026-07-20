@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Yachtmesh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-bg: #FAFAFA;
+      --color-text: #0F172A;
+      --color-muted: #6B7280;
+      --color-accent: #06B6D4;
+      --color-accent-dark: #0E7490;
+      --color-border: #E5E5E5;
+      --color-surface: #FFFFFF;
+      --font: 'Inter', system-ui, sans-serif;
+      --max-width: 760px;
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--color-muted);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-links a.accent {
+      color: var(--color-accent);
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .page-updated {
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+
+    /* ─── LEGAL CONTENT ─── */
+    .legal-content {
+      padding: 48px 0 64px;
+    }
+
+    .legal-content h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+
+    .legal-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .legal-content p {
+      font-size: 16px;
+      color: var(--color-muted);
+      margin-bottom: 14px;
+    }
+
+    .legal-content ul {
+      margin: 0 0 14px 20px;
+      color: var(--color-muted);
+    }
+
+    .legal-content li {
+      margin-bottom: 8px;
+    }
+
+    .legal-content strong {
+      color: var(--color-text);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 0;
+      background: #0F172A;
+      color: #94A3B8;
+    }
+
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-logo-text {
+        font-size: 18px;
+      }
+
+      .page-header {
+        padding: 40px 0 32px;
+      }
+
+      .legal-content {
+        padding: 32px 0 48px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav>
+    <div class="container">
+      <a class="nav-logo" href="/">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="2" r="2" fill="#0E7490" />
+          <circle cx="26" cy="14" r="2" fill="#0E7490" />
+          <circle cx="14" cy="26" r="2" fill="#0E7490" />
+          <circle cx="2" cy="14" r="2" fill="#0E7490" />
+          <circle cx="14" cy="14" r="4" fill="#06B6D4" />
+        </svg>
+        <span class="nav-logo-text">YACHTMESH</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#waitlist" class="accent">Get Early Access</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════ PAGE HEADER ═══════════ -->
+  <header class="page-header">
+    <div class="container">
+      <p class="section-label">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="page-updated">Last updated 20 July 2026</p>
+    </div>
+  </header>
+
+  <!-- ═══════════ CONTENT ═══════════ -->
+  <section class="legal-content">
+    <div class="container">
+
+      <h2>Who we are</h2>
+      <p>
+        Yachtmesh is an unincorporated project based in the Netherlands. This policy explains what information we
+        collect through yachtmesh.io, why we collect it, and how it's handled.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>We only collect information you choose to give us:</p>
+      <ul>
+        <li><strong>Waitlist sign-up:</strong> your email address, so we can let you know when early access opens.</li>
+        <li><strong>Contact form:</strong> your name, email address, and the message you send us, so we can reply to
+          you.</li>
+        <li><strong>Anti-abuse checks:</strong> your IP address, used briefly to enforce a rate limit and verify the
+          Cloudflare Turnstile CAPTCHA on our forms, so we can stop spam and automated abuse. IP addresses are not
+          stored beyond what's needed for this check.</li>
+      </ul>
+      <p>We don't use analytics or advertising cookies, and we don't track you across other sites.</p>
+
+      <h2>How we use your information</h2>
+      <ul>
+        <li>To respond to messages sent through the contact form.</li>
+        <li>To notify waitlist subscribers when early access becomes available.</li>
+        <li>To protect our forms from spam and automated abuse.</li>
+      </ul>
+      <p>We will never sell your information, and we send waitlist emails only when there's something meaningful to
+        share.</p>
+
+      <h2>Third parties we use</h2>
+      <p>We rely on a small number of service providers to run this site and its forms:</p>
+      <ul>
+        <li><strong>Loops.so</strong> — stores waitlist and contact-form entries and sends our emails.</li>
+        <li><strong>Cloudflare</strong> — hosts the form-processing backend, provides the Turnstile CAPTCHA, and
+          performs the request rate-limiting described above.</li>
+        <li><strong>GitHub Pages</strong> — hosts the static yachtmesh.io website itself.</li>
+      </ul>
+      <p>Each of these providers processes data on our behalf under their own privacy and security terms.</p>
+
+      <h2>Data retention</h2>
+      <p>
+        We keep waitlist and contact-form data for as long as it's useful for the purpose it was collected — for
+        example, until early access has launched, or until a support conversation is resolved — or until you ask us
+        to delete it.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        You can ask us to access, correct, or delete the information we hold about you at any time. To do so, or if
+        you have any questions about this policy, email us at
+        <a href="mailto:support@yachtmesh.io">support@yachtmesh.io</a>.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        We may update this policy as the project evolves. If we make material changes, we'll update the date at the
+        top of this page.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy or your data? Reach us at
+        <a href="mailto:support@yachtmesh.io">support@yachtmesh.io</a>.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container">
+      <span class="footer-logo">
+        <svg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="2" r="2" fill="#FFFFFF" />
+          <circle cx="26" cy="14" r="2" fill="#FFFFFF" />
+          <circle cx="14" cy="26" r="2" fill="#FFFFFF" />
+          <circle cx="2" cy="14" r="2" fill="#FFFFFF" />
+          <circle cx="14" cy="14" r="4" fill="#FFFFFF" />
+        </svg>
+        YACHTMESH
+      </span>
+      <p>© 2026 Yachtmesh. Open source. Built for sailors.</p>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/support">Support</a>
+        <a href="https://github.com/yachtmesh" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
